@@ -74,6 +74,11 @@ Although built for personal use, this app can be used by:
 
 ## 📷 Screenshots
 ![app](screenshots/cervical_app.png)
+![completed](screenshots/completed.png)
+![pause](screenshots/pause.png)
+![traction](screenshots/traction.png)
+
+
 
 
 ---
