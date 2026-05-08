@@ -129,16 +129,32 @@ class TractionCubit extends Cubit<TractionState> {
             phaseSecondsLeft: restPhaseSeconds,
           ),
         );
+        // } else {
+        //   // Rest  Traction (after 10 sec)
+        //   SoundService.playTractionResume();
+        //   //SoundService.startTicking();
+
+        //   emit(
+        //     state.copyWith(
+        //       phase: TractionPhase.traction,
+        //       totalSecondsLeft: newTotal,
+        //       phaseSecondsLeft: tractionPhaseSeconds,
+        //     ),
+        //   );
+        // }
       } else {
-        // Rest  Traction (after 10 sec)
+        // Rest → Traction
         SoundService.playTractionResume();
-        //SoundService.startTicking();
+
+        final int nextTractionSeconds = newTotal < tractionPhaseSeconds
+            ? newTotal
+            : tractionPhaseSeconds;
 
         emit(
           state.copyWith(
             phase: TractionPhase.traction,
             totalSecondsLeft: newTotal,
-            phaseSecondsLeft: tractionPhaseSeconds,
+            phaseSecondsLeft: nextTractionSeconds,
           ),
         );
       }

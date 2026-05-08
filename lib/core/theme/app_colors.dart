@@ -34,7 +34,7 @@ class AppColors {
   static const Color primaryAccent = Color(0xFF7C9EFF);
   static const Color lightText = Colors.white;
   static const Color mutedText = Colors.white70;
-
+  static const Color darkBlue1 = Color.fromARGB(255, 12, 27, 46);
   static const Color darkBlue = Color(0xFF0D1B2A);
   static const Color navyBlue = Color(0xFF1B263B);
   static const Color steelBlue = Color(0xFF415A77);
