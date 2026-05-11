@@ -27,9 +27,9 @@ class TractionSettings {
 
   factory TractionSettings.fromMap(Map map) {
     return TractionSettings(
-      tractionSeconds: map['traction'],
-      restSeconds: map['rest'],
-      totalSeconds: map['total'],
+      tractionSeconds: map['traction'] ?? 300,
+      restSeconds: map['rest'] ?? 10,
+      totalSeconds: map['total'] ?? 1800,
     );
   }
 }

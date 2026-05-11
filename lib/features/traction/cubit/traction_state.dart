@@ -7,7 +7,7 @@ enum TractionPhase {
 
 class TractionState {
   final TractionPhase phase;
-
+  final int initialTotalSeconds;
   final int totalSecondsLeft; // starts at 1800
   final int phaseSecondsLeft; // 300 or 5
 
@@ -17,6 +17,8 @@ class TractionState {
     required this.phase,
     required this.totalSecondsLeft,
     required this.phaseSecondsLeft,
+    required this.initialTotalSeconds,
+
     required this.isRunning,
   });
 
@@ -25,6 +27,8 @@ class TractionState {
       phase: TractionPhase.idle,
       totalSecondsLeft: 0,
       phaseSecondsLeft: 0,
+      initialTotalSeconds: 0,
+
       isRunning: false,
     );
   }
@@ -32,6 +36,7 @@ class TractionState {
   TractionState copyWith({
     TractionPhase? phase,
     int? totalSecondsLeft,
+    int? initialTotalSeconds,
     int? phaseSecondsLeft,
     bool? isRunning,
   }) {
@@ -39,6 +44,8 @@ class TractionState {
       phase: phase ?? this.phase,
       totalSecondsLeft: totalSecondsLeft ?? this.totalSecondsLeft,
       phaseSecondsLeft: phaseSecondsLeft ?? this.phaseSecondsLeft,
+      initialTotalSeconds: initialTotalSeconds ?? this.initialTotalSeconds,
+
       isRunning: isRunning ?? this.isRunning,
     );
   }

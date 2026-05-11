@@ -1,23 +1,3 @@
-// import 'package:flutter/material.dart';
-
-// class AppColors {
-//   // Solid colors
-
-//   static const Color darkBlue = Color(0xFF0D1B2A);
-//   static const Color navyBlue = Color(0xFF1B263B);
-//   static const Color steelBlue = Color(0xFF415A77);
-//   static const Color lightBlue = Color(0xFF778DA9);
-
-//   // Text colors
-//   static const Color primaryText = Colors.white;
-//   static const Color secondaryText = Color(0xFFCBD5E1);
-
-//   static const LinearGradient tractionBackground = LinearGradient(
-//     begin: Alignment.topCenter,
-//     end: Alignment.bottomCenter,
-//     colors: [Color.fromARGB(255, 51, 70, 105), darkBlue],
-//   );
-// }
 import 'package:flutter/material.dart';
 
 class AppColors {
