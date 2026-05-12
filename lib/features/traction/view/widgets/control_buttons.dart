@@ -84,7 +84,7 @@ class ControlButtons extends StatelessWidget {
     final cubit = context.read<TractionCubit>();
 
     // ---------------------------
-    // IDLE → Start
+    // IDLE - Start
     // ---------------------------
     if (state.phase == TractionPhase.idle) {
       return ControlButton(
@@ -94,9 +94,20 @@ class ControlButtons extends StatelessWidget {
         onTap: cubit.startSession,
       );
     }
-
     // ---------------------------
-    // COMPLETED → Start Again
+    // STOPPED
+    // ---------------------------
+
+    if (state.phase == TractionPhase.stopped) {
+      return ControlButton(
+        icon: Icons.refresh,
+        label: 'Start New Session',
+        primary: true,
+        onTap: cubit.startSession,
+      );
+    }
+    // ---------------------------
+    // COMPLETED - Start Again
     // ---------------------------
     if (state.phase == TractionPhase.completed) {
       return ControlButton(
@@ -108,7 +119,7 @@ class ControlButtons extends StatelessWidget {
     }
 
     // ---------------------------
-    // RUNNING → Pause / Stop
+    // RUNNING - Pause / Stop
     // ---------------------------
     if (state.isRunning) {
       return Row(
@@ -130,7 +141,7 @@ class ControlButtons extends StatelessWidget {
     }
 
     // ---------------------------
-    // PAUSED → Resume / Stop
+    // PAUSED - Resume / Stop
     // ---------------------------
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,

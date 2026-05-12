@@ -209,7 +209,8 @@ import 'package:cervical_tracker/features/settings/view/settings_screen.dart';
 import 'package:cervical_tracker/features/traction/cubit/traction_cubit.dart';
 import 'package:cervical_tracker/features/traction/cubit/traction_state.dart';
 import 'package:cervical_tracker/features/traction/view/widgets/control_buttons.dart';
-import 'package:cervical_tracker/features/traction/view/widgets/phase_badge.dart';
+import 'package:cervical_tracker/features/traction/view/widgets/phase_indicator.dart';
+// import 'package:cervical_tracker/features/traction/view/widgets/phase_badge.dart';
 import 'package:cervical_tracker/features/traction/view/widgets/timer_display.dart';
 import 'package:cervical_tracker/features/widgets/session_progress_bar.dart';
 import 'package:cervical_tracker/features/widgets/timer_card.dart';
@@ -260,7 +261,7 @@ class TractionScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         // Phase text
-                        PhaseBadge(phase: state.phase),
+                        PhaseIndicator(phase: state.phase),
 
                         const SizedBox(height: 24),
 

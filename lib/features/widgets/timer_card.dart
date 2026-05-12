@@ -56,6 +56,10 @@ class TimerCard extends StatelessWidget {
         // glowColor = AppColors.tractionText;
         break;
 
+      case TractionPhase.stopped:
+        glowColor = Colors.orangeAccent;
+        break;
+
       case TractionPhase.idle:
         glowColor = Colors.white24;
         break;
