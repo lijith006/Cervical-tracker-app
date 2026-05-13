@@ -107,12 +107,19 @@ class PhaseIndicator extends StatelessWidget {
       decoration: BoxDecoration(
         color: style.backgroundColor,
 
-        borderRadius: BorderRadius.circular(30),
-
+        // borderRadius: BorderRadius.circular(30),
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(8),
+          bottomLeft: Radius.circular(8),
+          bottomRight: Radius.circular(20),
+        ),
         boxShadow: [
           BoxShadow(
             color: style.backgroundColor.withOpacity(0.4),
-            blurRadius: 12,
+
+            //  blurRadius: 12,
+            blurRadius: 8,
           ),
         ],
       ),

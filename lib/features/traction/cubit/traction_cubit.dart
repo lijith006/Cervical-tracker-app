@@ -389,6 +389,7 @@ import 'dart:async';
 import 'package:cervical_tracker/core/services/sound_service.dart';
 import 'package:cervical_tracker/core/storage/hive_service.dart';
 import 'package:cervical_tracker/features/traction/models/traction_settings.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
 
@@ -589,7 +590,12 @@ class TractionCubit extends Cubit<TractionState> {
 
     final int currentPhaseDuration = _getCurrentPhaseDuration();
 
-    final int newPhase = currentPhaseDuration - phaseElapsed;
+    // final int newPhase = currentPhaseDuration - phaseElapsed;
+    final int calculatedPhase = currentPhaseDuration - phaseElapsed;
+
+    final int newPhase = calculatedPhase > newTotal
+        ? newTotal
+        : calculatedPhase;
 
     // ---------------------------
     // SESSION COMPLETED
@@ -604,7 +610,11 @@ class TractionCubit extends Cubit<TractionState> {
     // PHASE SWITCH
     // ---------------------------
 
-    if (newPhase <= 0) {
+    // if (newPhase <= 0) {
+    //   _switchPhase(newTotal);
+    //   return;
+    // }
+    if (newPhase <= 0 && newTotal > 0) {
       _switchPhase(newTotal);
       return;
     }
@@ -629,12 +639,15 @@ class TractionCubit extends Cubit<TractionState> {
       // TRACTION -> REST
 
       SoundService.playRestStart();
-
+      final int nextRestSeconds = newTotal < _settings.restSeconds
+          ? newTotal
+          : _settings.restSeconds;
       emit(
         state.copyWith(
           phase: TractionPhase.rest,
           totalSecondsLeft: newTotal,
-          phaseSecondsLeft: _settings.restSeconds,
+          // phaseSecondsLeft: _settings.restSeconds,
+          phaseSecondsLeft: nextRestSeconds,
         ),
       );
     } else {
@@ -664,6 +677,7 @@ class TractionCubit extends Cubit<TractionState> {
     _timer?.cancel();
 
     WakelockPlus.disable();
+    HapticFeedback.mediumImpact();
 
     SoundService.playSessionCompleted();
 

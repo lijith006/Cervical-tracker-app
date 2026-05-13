@@ -1,7 +1,9 @@
 // import 'package:flutter/material.dart';
+// import 'package:flutter/services.dart';
 // import 'package:flutter_bloc/flutter_bloc.dart';
 // import '../../cubit/traction_cubit.dart';
 // import '../../cubit/traction_state.dart';
+// import '../../../widgets/control_button.dart';
 
 // class ControlButtons extends StatelessWidget {
 //   final TractionState state;
@@ -13,62 +15,113 @@
 //     final cubit = context.read<TractionCubit>();
 
 //     // ---------------------------
-//     // IDLE → Start
+//     // IDLE - Start
 //     // ---------------------------
 //     if (state.phase == TractionPhase.idle) {
-//       return ElevatedButton(
-//         onPressed: cubit.startSession,
-//         child: const Text('Start'),
+//       return ControlButton(
+//         icon: Icons.play_arrow,
+//         label: 'Start',
+//         primary: true,
+//         // onTap: cubit.startSession,
+//         onTap: () {
+//           HapticFeedback.mediumImpact();
+//           cubit.startSession();
+//         },
 //       );
 //     }
-
 //     // ---------------------------
-//     // COMPLETED → Start Again
+//     // START NEW SESSION -
+//     // ---------------------------
+
+//     if (state.phase == TractionPhase.stopped) {
+//       return ControlButton(
+//         icon: Icons.refresh,
+//         label: 'Start New Session',
+//         primary: true,
+//         onTap: () {
+//           HapticFeedback.mediumImpact();
+//           cubit.startSession();
+//         },
+//       );
+//     }
+//     // ---------------------------
+//     // COMPLETED - Start Again
 //     // ---------------------------
 //     if (state.phase == TractionPhase.completed) {
-//       return ElevatedButton(
-//         onPressed: cubit.startSession,
-//         child: const Text('Start Again'),
+//       return ControlButton(
+//         icon: Icons.replay,
+//         label: 'Start Again',
+//         primary: true,
+//         onTap: () {
+//           HapticFeedback.mediumImpact();
+//           cubit.startSession();
+//         },
 //       );
 //     }
 
 //     // ---------------------------
-//     // RUNNING → Pause / Stop
+//     // RUNNING - Pause / Stop
 //     // ---------------------------
 //     if (state.isRunning) {
 //       return Row(
 //         mainAxisAlignment: MainAxisAlignment.center,
 //         children: [
-//           ElevatedButton(
-//             onPressed: cubit.pauseSession,
-//             child: const Text('Pause'),
+//           ControlButton(
+//             icon: Icons.pause,
+//             label: 'Pause',
+//             // onTap: cubit.pauseSession,
+//             onTap: () {
+//               HapticFeedback.selectionClick();
+//               cubit.pauseSession();
+//             },
 //           ),
-//           const SizedBox(width: 12),
-//           OutlinedButton(
-//             onPressed: cubit.stopSession,
-//             child: const Text('Stop'),
+//           const SizedBox(width: 16),
+//           ControlButton(
+//             icon: Icons.stop,
+//             label: 'Stop',
+//             // onTap: cubit.stopSession,
+//             onTap: () {
+//               HapticFeedback.selectionClick();
+//               cubit.stopSession();
+//             },
 //           ),
 //         ],
 //       );
 //     }
 
 //     // ---------------------------
-//     // PAUSED → Resume / Stop
+//     // PAUSED - Resume / Stop
 //     // ---------------------------
 //     return Row(
 //       mainAxisAlignment: MainAxisAlignment.center,
 //       children: [
-//         ElevatedButton(
-//           onPressed: cubit.resumeSession,
-//           child: const Text('Resume'),
+//         ControlButton(
+//           icon: Icons.play_arrow,
+//           label: 'Resume',
+//           primary: true,
+//           // onTap: cubit.resumeSession,
+//           onTap: () {
+//             HapticFeedback.selectionClick();
+//             cubit.resumeSession();
+//           },
 //         ),
-//         const SizedBox(width: 12),
-//         OutlinedButton(onPressed: cubit.stopSession, child: const Text('Stop')),
+//         const SizedBox(width: 16),
+//         ControlButton(
+//           icon: Icons.stop,
+//           label: 'Stop',
+//           // onTap: cubit.stopSession,
+//           onTap: () {
+//             HapticFeedback.selectionClick();
+//             cubit.stopSession();
+//           },
+//         ),
 //       ],
 //     );
 //   }
 // }
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../cubit/traction_cubit.dart';
 import '../../cubit/traction_state.dart';
@@ -91,11 +144,15 @@ class ControlButtons extends StatelessWidget {
         icon: Icons.play_arrow,
         label: 'Start',
         primary: true,
-        onTap: cubit.startSession,
+        // onTap: cubit.startSession,
+        onTap: () {
+          HapticFeedback.mediumImpact();
+          cubit.startSession();
+        },
       );
     }
     // ---------------------------
-    // STOPPED
+    // START NEW SESSION -
     // ---------------------------
 
     if (state.phase == TractionPhase.stopped) {
@@ -103,7 +160,10 @@ class ControlButtons extends StatelessWidget {
         icon: Icons.refresh,
         label: 'Start New Session',
         primary: true,
-        onTap: cubit.startSession,
+        onTap: () {
+          HapticFeedback.mediumImpact();
+          cubit.startSession();
+        },
       );
     }
     // ---------------------------
@@ -114,7 +174,10 @@ class ControlButtons extends StatelessWidget {
         icon: Icons.replay,
         label: 'Start Again',
         primary: true,
-        onTap: cubit.startSession,
+        onTap: () {
+          HapticFeedback.mediumImpact();
+          cubit.startSession();
+        },
       );
     }
 
@@ -128,13 +191,24 @@ class ControlButtons extends StatelessWidget {
           ControlButton(
             icon: Icons.pause,
             label: 'Pause',
-            onTap: cubit.pauseSession,
+            // onTap: cubit.pauseSession,
+            onTap: () {
+              HapticFeedback.selectionClick();
+              cubit.pauseSession();
+            },
           ),
           const SizedBox(width: 16),
           ControlButton(
             icon: Icons.stop,
             label: 'Stop',
-            onTap: cubit.stopSession,
+
+            backgroundColor: const Color(0xFF7A2E2E),
+            foregroundColor: Colors.white,
+
+            onTap: () {
+              HapticFeedback.heavyImpact();
+              cubit.stopSession();
+            },
           ),
         ],
       );
@@ -150,13 +224,24 @@ class ControlButtons extends StatelessWidget {
           icon: Icons.play_arrow,
           label: 'Resume',
           primary: true,
-          onTap: cubit.resumeSession,
+          // onTap: cubit.resumeSession,
+          onTap: () {
+            HapticFeedback.selectionClick();
+            cubit.resumeSession();
+          },
         ),
         const SizedBox(width: 16),
         ControlButton(
           icon: Icons.stop,
           label: 'Stop',
-          onTap: cubit.stopSession,
+
+          backgroundColor: const Color(0xFF7A2E2E),
+          foregroundColor: Colors.white,
+
+          onTap: () {
+            HapticFeedback.heavyImpact();
+            cubit.stopSession();
+          },
         ),
       ],
     );

@@ -72,20 +72,23 @@ class TimerCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 40),
 
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(60),
-        // borderRadius: const BorderRadius.only(
-        //   topLeft: Radius.circular(40),
-        //   topRight: Radius.circular(10),
-        //   bottomLeft: Radius.circular(10),
-        //   bottomRight: Radius.circular(40),
-        // ),
+        // borderRadius: BorderRadius.circular(60),
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(40),
+          topRight: Radius.circular(10),
+          bottomLeft: Radius.circular(10),
+          bottomRight: Radius.circular(40),
+        ),
         color: Colors.white10,
 
         boxShadow: [
           BoxShadow(
             color: glowColor.withOpacity(0.35),
-            blurRadius: 25,
-            spreadRadius: 3,
+
+            // blurRadius: 25,
+            // spreadRadius: 3,
+            blurRadius: 12,
+            spreadRadius: 2,
           ),
         ],
       ),
